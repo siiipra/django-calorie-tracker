@@ -22,4 +22,7 @@ urlpatterns = [
     path('delete/<int:id>/', views.delete_consume, name="delete"),
     path('create_food', views.create_food, name="CreateFood"),
 
+    path('signup', views.signup, name="signup"),
+    path('login', views.log_in, name="login"),
+    path('logout', views.log_out, name="logout"),
 ]
