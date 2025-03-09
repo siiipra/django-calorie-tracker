@@ -10,12 +10,13 @@ from django.contrib.auth import logout
 def index(request):
     if request.method == "POST":
         food_consumed = request.POST['food_consumed']
-        consume = Food.objects.get(name=food_consumed)
+        quantity = request.POST['quantity']
+        date_consumed = request.POST['date']
+        food = Food.objects.get(name=food_consumed)
         user = request.user
-        consume = Consume(user=user, food_consumed=consume)
+        consume = Consume(user=user, food_consumed=food, quantity=quantity, date_consumed=date_consumed)
         consume.save()
         foods = Food.objects.all()
-
     else:
         foods = Food.objects.all()
     consumed_food = []
