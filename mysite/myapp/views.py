@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
+import datetime
 # Create your views here.
 
 
@@ -21,7 +22,12 @@ def index(request):
         foods = Food.objects.all()
     consumed_food = []
     if request.user.is_authenticated:
-        consumed_food = Consume.objects.filter(user=request.user)
+        if 'startdate' in request.GET and 'enddate' in request.GET:
+            startdate=request.GET['startdate']
+            enddate=request.GET['enddate']
+            consumed_food = Consume.objects.filter(user=request.user,date_consumed__range=(startdate, enddate))
+        else:
+            consumed_food = Consume.objects.filter(user=request.user,date_consumed=datetime.date.today())
 
     return render(request, 'myapp/index.html', {'foods': foods, 'consumed_food': consumed_food})
 

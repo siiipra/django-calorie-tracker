@@ -1,8 +1,11 @@
 <html>
 <head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -54,6 +57,17 @@
 
         <br>
 
+        <form method="GET">
+            <div class="row">
+                <label for="startdate" class="form-label col-md-1">Start Date</label>
+                <input type="date"  class="form-control col-md-4" style="text-align:center" id="startdate" name="startdate">
+                <label for="enddate" class="form-label col-md-1">End Date</label>
+                <input type="date"  class="form-control col-md-4" style="text-align:center" id="enddate" name="enddate">
+                <button class="btn btn-success col-md-2" type="submit">Select Date range</button>
+            </div>
+        </form>
+
+        <br>
         <h3 style="text-align:center">Calorie Goal</h3>
         <br>
         <div class="row">
@@ -183,6 +197,11 @@
             }]
         },
 
+    });
+
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+        $('#food_consumed').select2();
     });
 
 </script>
