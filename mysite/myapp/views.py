@@ -21,6 +21,8 @@ def index(request):
     else:
         foods = Food.objects.all()
     consumed_food = []
+    startdate = ""
+    enddate = ""
     if request.user.is_authenticated:
         if 'startdate' in request.GET and 'enddate' in request.GET:
             startdate=request.GET['startdate']
@@ -29,7 +31,7 @@ def index(request):
         else:
             consumed_food = Consume.objects.filter(user=request.user,date_consumed=datetime.date.today())
 
-    return render(request, 'myapp/index.html', {'foods': foods, 'consumed_food': consumed_food})
+    return render(request, 'myapp/index.html', {'foods': foods, 'consumed_food': consumed_food, 'startdate': startdate, 'enddate': enddate})
 
 
 def delete_consume(request, id):
